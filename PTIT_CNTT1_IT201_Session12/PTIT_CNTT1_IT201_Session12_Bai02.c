@@ -23,7 +23,16 @@ int getLength(Node* node) {
     }
     return length;
 }
-
+void printList(Node* node) {
+ Node* temp = node;
+    int index = 1;
+    while (temp != NULL) {
+        printf("Node %d: %d\n", index, temp->data);
+        temp = temp->next;
+        index++;
+    }
+    printf("\n");
+}
 int main() {
     Node* head = createNode(1);
     Node* node1 = createNode(2);
@@ -40,13 +49,7 @@ int main() {
     node3->prev = node2;
     node4->next = NULL;
     node4->prev = node3;
-    printf("%d\n", getLength(head));
-    Node* temp = head;
-    for (int i = 0; i < getLength(head); ++i) {
 
-        printf("%d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
+  printList(head);
 }
 
