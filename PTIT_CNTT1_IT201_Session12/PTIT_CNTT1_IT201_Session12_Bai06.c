@@ -1,8 +1,7 @@
 
-//PTIT_CNTT1_IT201_Session12_Bai06
+//PTIT_CNTT1_IT201_Session12_Bai05
 #include <stdio.h>
 #include <stdlib.h>
-int i =1;
 typedef struct Node {
     int data;
     struct Node* next;
@@ -15,32 +14,40 @@ Node* createNode(int data) {
     node->prev = NULL;
     return node;
 }
+int getLength(Node* node) {
+    int length = 0;
+    while (node != NULL) {
+        node = node->next;
+        length++;
 
+    }
+    return length;
+}
 void printList(Node* node) {
+    printf("NULL <->");
     while (node != NULL) {
         printf("%d<-> ", node->data);
         node = node->next;
     }
     printf("NULL\n");
 }
-Node* findNode(Node* node, int key) {
-
-    while (node != NULL) {
-
-
-        if (node->data == key) {
-            return node;
-        }
-        node = node->next;
-        i++;
+Node* findNode(Node* head) {
+    if (head == NULL) {
+        return NULL;
     }
-    return NULL;
+Node* node = head;
+    int length = getLength(head);
+    for (int i =0;i<length/2;i++) {
+        node = node->next;
+    }
+
+    return node;
 }
 
 int main() {
     Node* head = createNode(1);
-    Node* node1 = createNode(9);
-    Node* node2 = createNode(3);
+    Node* node1 = createNode(2);
+    Node* node2 = createNode(1);
     Node* node3 = createNode(4);
     Node* node4 = createNode(5);
     head->next = node1;
@@ -53,10 +60,8 @@ int main() {
     node3->prev = node2;
     node4->next = NULL;
     node4->prev = node3;
-    int key;
-    printf("nhap so can tim : ");
-    scanf("%d", &key);
-  Node* node = findNode(head, key);
-    printf("Node %d : %d ",key,i);
+printList(head);
+Node* middle = findNode(head);
+    printf("%d", middle->data);
 }
 

@@ -24,6 +24,7 @@ int getLength(Node* node) {
     return length;
 }
 void printList(Node* node) {
+    printf("NULL <->");
     while (node != NULL) {
         printf("%d<-> ", node->data);
         node = node->next;
@@ -32,6 +33,7 @@ void printList(Node* node) {
 }
 Node* delCorrectNode(Node* head, int data) {
     Node* temp = head;
+    int del=0;
     while (temp != NULL) {
         Node* next = temp->next;
         if (temp->data == data) {
@@ -42,8 +44,13 @@ Node* delCorrectNode(Node* head, int data) {
             if (temp->next != NULL)
                 temp->next->prev = temp->prev;
             free(temp);
+            del = 1;
         }
         temp = next;
+    }
+    if (del==0) {
+        printf("NULL\n");
+        return 0;
     }
     return head;
 }
@@ -64,12 +71,16 @@ int main() {
     node3->prev = node2;
     node4->next = NULL;
     node4->prev = node3;
+    int key;
+    printList(head);
+    printf("Enter the key: ");
+    scanf("%d", &key);
 
+    head =delCorrectNode(head,key);
+    if (head) {
+        printList(head);
+    }
 
-
-
-    Node* node =delCorrectNode(head,1);
-    printList(node);
 
 }
 
