@@ -14,6 +14,7 @@ st* create(int data) {
     return node;
 }
 st* push(st* head,int data) {
+
     st* node = create(data);
     st* temp = head;
     while (temp->next!=NULL) {
