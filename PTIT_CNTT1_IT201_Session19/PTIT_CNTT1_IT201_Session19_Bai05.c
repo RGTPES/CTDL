@@ -1,6 +1,7 @@
 //PTIT_CNTT1_IT201_Session19_Bai05
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 typedef struct node {
     int data;
     struct node* left ;
@@ -41,6 +42,12 @@ Node* dequeue(Queue* q) {
 }
 int isEmpty(Queue* q) {
     return q->front == NULL;
+}
+
+bool search(Node* root, int x) {
+    if (root == NULL) return false;
+    if (root->data == x) return true;
+    return search(root->left, x) || search(root->right, x);
 }
 Node* createNode(int data) {
     Node* node = (Node*)malloc(sizeof(Node));
@@ -88,6 +95,10 @@ int main(){
     root->left = node1;
     root->right = node3;
     node1->left = node2;
-    levelOder(root);
+    if (search(root, 6)) {
+        printf("True");
+    } else {
+        printf("false");
+    }
     return 0;
 }
