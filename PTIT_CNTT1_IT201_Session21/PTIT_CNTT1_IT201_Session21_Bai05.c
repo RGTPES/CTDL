@@ -16,7 +16,6 @@ Node* createNode(int v) {
 }
 
 void addEdge(Node* adjList[], int u, int v) {
- // Thêm v vào danh sách của u
  Node* newNodeV = createNode(v);
  newNodeV->next = adjList[u];
  adjList[u] = newNodeV;
@@ -48,7 +47,6 @@ void printGraph(Node* adjList[]) {
 int main() {
  Node* adjList[SIZE] = {NULL};
 
- // In đồ thị ban đầu (trống)
  printGraph(adjList);
 
  int startNode = 1, endNode = 2;
