@@ -62,20 +62,19 @@ int findMax(Node* root) {
 int isEmpty(Queue* q) {
     return q->front == NULL;
 }
-void deleteNode(Node* root, int value) {
+Node* deleteNode(Node* root, int value) {
     if (root == NULL) {
         printf("Cay rong.\n");
-        return;
+        return NULL;
     }
 
     if (root->left == NULL && root->right == NULL) {
         if (root->data == value) {
             free(root);
-            root = NULL;
-            return;
+            return NULL;
         } else {
             printf("Khong tim thay gia tri %d trong cay.\n", value);
-            return;
+            return root;
         }
     }
 
@@ -124,13 +123,15 @@ void deleteNode(Node* root, int value) {
             root = NULL;
         }
 
-        printf("Da xoa thanh cong");
+        printf("Da xoa thanh cong\n");
     } else {
-        printf("khong thay");
+        printf("Khong tim thay gia tri %d trong cay.\n", value);
     }
 
     free(q);
+    return root;
 }
+
 
 void insertNode(Node* root, int value) {
     if (root == NULL) return;
@@ -218,7 +219,7 @@ int main() {
     root->right = node3;
     node1->left = node2;
     node1->right = node4;
-    deleteNode(root, 5);
+    root = deleteNode(root, 3);
     preOrderDFS(root);
     return 0;
 }
